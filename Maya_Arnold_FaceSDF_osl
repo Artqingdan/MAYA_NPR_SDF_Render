@@ -1,0 +1,13 @@
+shader sdfMapOperator
+(
+         float sdfMapBrightness = 0.0,
+         vector forwardVec = vector(0,0,1),
+         vector pointToLightVec = vector(1,1,1),
+         output color mask = color(0,0,0)
+)
+{
+         float dotResult = dot(forwardVec,pointToLightVec);
+         float threshold = (dotResult + 1)/2;
+         float val = step(sdfMapBrightness,threshold);
+         mask = color(val,val,val);
+}
